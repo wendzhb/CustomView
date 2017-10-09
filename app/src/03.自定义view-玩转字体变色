@@ -1,0 +1,22 @@
+1.效果展示和思路分析
+    画笔paint的使用
+    思路：TextView不可行，系统提供的只显示一种颜色，需要自定义View
+         自定义view继承谁？    extends View        ：onmeasure onDraw
+                             extends TextView ： onmeasure不用重写， textColor textSize都有，会少很多逻辑
+                             1.一个文字两种颜色,画
+                             2.能够从左到右或者从右到左
+                             3.整合到viewpager
+
+    自定义属性：
+        不变化的颜色:originColor
+        变化的颜色:changeColor
+
+2.一个文件两种颜色
+    两个画笔画，用的是裁剪
+
+3.实现不同朝向
+    左边是不变色，右边是变色的；
+    左边是变色的，右边是变色的
+
+4.结合ViewPager和任务布置
+    LinearLayout(代码添加变色的View) + ViewPager

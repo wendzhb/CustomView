@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.kaifa.customview.activity.ViewDay02Activity">
+
+    <com.kaifa.customview.widget.QQStepView
+        android:id="@+id/qq_sv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:borderWidth="6dp"
+        app:innerColor="@color/colorAccent"
+        app:outerColor="@color/colorPrimaryDark"
+        app:stepTextColor="@color/colorPrimary"
+        app:stepTextSize="16sp" />
+
+</LinearLayout>

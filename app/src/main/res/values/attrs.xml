@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--name : 自定义view的名字 TextView-->
+    <declare-styleable name="TextView">
+        <!--name：属性名称 format: 格式
+        string 文字   color 颜色    dimension 宽高，字体大小
+        integer 数字  reference 资源    -->
+        <attr name="custext" format="string" />
+        <attr name="custextColor" format="color" />
+        <attr name="custextSize" format="dimension" />
+        <attr name="cusmaxLength" format="integer" />
+        <!--自定义view继承自view，background都是由view进行管理的-->
+        <!--<attr name="background" format="reference|color"/>-->
+        <!--枚举-->
+        <attr name="cusinputType">
+            <enum name="number" value="1" />
+            <enum name="text" value="2" />
+            <enum name="password" value="3" />
+        </attr>
+    </declare-styleable>
+
+
+    <!--仿QQ运动步数-->
+    <declare-styleable name="QQStepView">
+        <attr name="outerColor" format="color" />
+        <attr name="innerColor" format="color" />
+        <attr name="borderWidth" format="dimension" />
+        <attr name="stepTextColor" format="color" />
+        <attr name="stepTextSize" format="dimension" />
+    </declare-styleable>
+
+    <!--字体变色-->
+    <declare-styleable name="ColorTrackTextView">
+        <attr name="originColor" format="color" />
+        <attr name="changeColor" format="color" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,66 @@
+1.仿QQ运动步数进度效果实现思路分析
+    三个部分：
+        1.固定不动蓝色的大圆弧color borderWidth
+        2.可以变化的小圆弧（红色）color borderWidth
+        3.中间的步数文字color textSize
+
+        自定义view，为了调用者方便需要自定义属性，不要写死
+
+2.效果步骤实现
+
+3.invalidate()源码分析
+
+    p.invalidateChild(this, damage);    p-->Parent父类
+        do{
+        ...
+            parent = parent.invalidateChildInParent(location, dirty);
+            if (view != null) {
+                // Account for transform on current parent
+                Matrix m = view.getMatrix();
+                if (!m.isIdentity()) {
+                    RectF boundingRect = attachInfo.mTmpTransformRect;
+                    boundingRect.set(dirty);
+                    m.mapRect(boundingRect);
+                    dirty.set((int) Math.floor(boundingRect.left),
+                            (int) Math.floor(boundingRect.top),
+                            (int) Math.ceil(boundingRect.right),
+                            (int) Math.ceil(boundingRect.bottom));
+                }
+            }
+        } while (parent != null);
+
+
+    mView.draw(canvas);
+
+    invalidate()流程：
+    一路往上跑，跑到最外层，调用draw--->dispatchDraw() 一路往下画，最终画到当前调用invalidate的view的onDraw()方法
+
+    invalidate()牵连着整个layout布局中的view
+
+
+    为什么不能在子线程中更新UI？
+
+    开了线程，更新UI， 一般会调用setText(),setImageView()都会调到这里面来ViewRootImpl checkThread()
+    checkThread() 用来检测线程
+    void checkThread() {
+        if (mThread != Thread.currentThread()) {
+            throw new CalledFromWrongThreadException(
+                    "Only the original thread that created a view hierarchy can touch its views.");
+        }
+    }
+    if (mThread != Thread.currentThread())
+    Thread.currentThread()是子线程
+    mThread在构造函数中初始化的mThread = Thread.currentThread()是主线程;
+
+UI的绘制流程 performTraversals()非常重要：performMeasure();performLayout();performDraw()
+
+
+
+4.高级面试题详解（如何向微信朋友圈一样优化过度渲染）
+  看自己的界面有没有过度渲染 开发者选项 打开调试GPU过度绘制，不要见红
+  1.网上的一些解决方案
+    尽量不要嵌套
+    能不设置背景不要设置背景
+  2.最好的解决方案
+    获取到数据去设置setText setImageView 其实 oninvalidate() 最好自己画，不要用系统的嵌套布局     运行效率高，实现功能效率低
+

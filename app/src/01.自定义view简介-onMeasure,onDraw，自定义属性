@@ -1,0 +1,153 @@
+1.自定义view简介
+    自定义view可以认为是继承自view,系统没有的效果（imageview/textview/button）,extends view ; extend viewgroup
+    自定义一个系统的textview,自定义view入门
+
+2.onMeasure
+    //获取宽高的模式
+    int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+    int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+
+    MeasureSpec.AT_MOST:在布局中指定了wrap_content
+    MeasureSpec.EXACTLY:在布局中指定了确切的值 100dp/match_parent
+    MeasureSpec.UNSPECIFIED:尽可能的大,很少能用到，listview或者scrollview  在测量子布局的时候会用UNSPECIFIED
+
+    scrollview+listview会显示不全
+
+    widthMeasureSpec:会包含两个信息第一个信息是模式，值
+
+3.onDraw()
+    /**
+     * 用于绘制
+     *
+     * @param canvas
+     */
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        //画文本
+        canvas.drawText();
+        //画弧
+        canvas.drawArc();
+        //画圆
+        canvas.drawCircle();
+    }
+
+4.onTouchEvent()
+    /**
+    * 处理跟用户交互的
+    *
+    * @param event
+    * @return
+    */
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN://抬起
+                break;
+            case MotionEvent.ACTION_MOVE://移动
+                break;
+            case MotionEvent.ACTION_UP://按下
+                break;
+       }
+       return super.onTouchEvent(event);
+    }
+
+5.自定义属性
+    自定义属性就是用来配置的，android.text="hello"是系统的一个自定义属性
+    5.1在res下的values下面新建attrs.xml
+    <resources>
+        <!--name : 自定义view的名字 TextView-->
+        <declare-styleable name="TextView">
+            <!--name：属性名称 format: 格式
+            string 文字   color 颜色    dimension 宽高，字体大小
+            integer 数字  reference 资源    -->
+            <attr name="text" format="string"/>
+            <attr name="textColor" format="color"/>
+            <attr name="textSize" format="dimension"/>
+            <attr name="maxLength" format="integer"/>
+            <attr name="background" format="reference|color"/>
+            <!--枚举-->
+            <attr name="inputType">
+                <enum name="number" value="1"/>
+                <enum name="text" value="2"/>
+                <enum name="password" value="3"/>
+            </attr>
+        </declare-styleable>
+    </resources>
+
+    注意，系统有的属性不能重新定义
+    5.2在布局中使用
+    声明命名空间，然后在自己的自定义view使用
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+        <com.kaifa.customview.widget.TextView
+                app:text="@string/app_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+    5.3在自定义view中获取属性
+
+6.完善自定义textview
+    6.1指定宽高（三种测量模式）AT_MOST  EXACTLY
+    针对不同的情况制定不同的宽高
+
+
+extends LinearLayout不能出效果，默认的viewgroup不会调用ondraw方法
+
+画的其实是draw(Canvas canvas)
+
+// Step 3, draw the content
+if (!dirtyOpaque) onDraw(canvas);
+
+// Step 4, draw the children
+dispatchDraw(canvas);
+
+// Step 6, draw decorations (foreground, scrollbars)
+onDrawForeground(canvas);
+
+dirtyOpaque是false走onDraw(canvas)方法，是由privateFlags ->mPrivateFlags决定的
+
+final boolean dirtyOpaque = (privateFlags & PFLAG_DIRTY_MASK) == PFLAG_DIRTY_OPAQUE &&
+                (mAttachInfo == null || !mAttachInfo.mIgnoreDirtyState);
+
+mPrivateFlags 赋值--->在view的构造函数当中computeOpaqueFlags();
+
+    /**
+     * @hide
+     */
+    protected void computeOpaqueFlags() {
+        // Opaque if:
+        //   - Has a background
+        //   - Background is opaque
+        //   - Doesn't have scrollbars or scrollbars overlay
+
+        if (mBackground != null && mBackground.getOpacity() == PixelFormat.OPAQUE) {
+            mPrivateFlags |= PFLAG_OPAQUE_BACKGROUND;
+        } else {
+            mPrivateFlags &= ~PFLAG_OPAQUE_BACKGROUND;
+        }
+
+        final int flags = mViewFlags;
+        if (((flags & SCROLLBARS_VERTICAL) == 0 && (flags & SCROLLBARS_HORIZONTAL) == 0) ||
+                (flags & SCROLLBARS_STYLE_MASK) == SCROLLBARS_INSIDE_OVERLAY ||
+                (flags & SCROLLBARS_STYLE_MASK) == SCROLLBARS_OUTSIDE_OVERLAY) {
+            mPrivateFlags |= PFLAG_OPAQUE_SCROLLBARS;
+        } else {
+            mPrivateFlags &= ~PFLAG_OPAQUE_SCROLLBARS;
+        }
+    }
+
+viewgroup 出不来的原因：initViewGroup();
+
+    private void initViewGroup() {
+        // ViewGroup doesn't draw by default
+        if (!debugDraw()) {
+            setFlags(WILL_NOT_DRAW, DRAW_MASK);
+        }
+    }
+    导致mPrivateFlags会重新复制
+
+解决这个问题的思路：
+1.onDraw()改为dispatchDraw();
+2.可以设置一个背景
+3.setWillNotDraw
