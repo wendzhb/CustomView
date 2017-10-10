@@ -19,7 +19,8 @@
         <activity android:name=".base.BaseActivity" />
         <activity android:name=".activity.ViewDay02Activity" />
         <activity android:name=".activity.ViewDay03Activity" />
-        <activity android:name=".activity.ViewPagerActivity"></activity>
+        <activity android:name=".activity.ViewPagerActivity" />
+        <activity android:name=".activity.ViewDay04Activity"/>
     </application>
 
 </manifest>

@@ -117,7 +117,7 @@ public class QQStepView extends View {
         int dx = center - textBounds.width() / 2;
         //基线
         Paint.FontMetricsInt fontMetricsInt = mTextPaint.getFontMetricsInt();
-        int dy = (fontMetricsInt.bottom = fontMetricsInt.top) / 2 - fontMetricsInt.bottom;
+        int dy = (fontMetricsInt.bottom - fontMetricsInt.top) / 2 - fontMetricsInt.bottom;
         int baseLine = getHeight() / 2 + dy;
         canvas.drawText(stepText, dx, baseLine, mTextPaint);
     }
