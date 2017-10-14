@@ -35,11 +35,19 @@
         <attr name="changeColor" format="color" />
     </declare-styleable>
     
+    <!--自定义progressbar-->
     <declare-styleable name="ProgressBarView">
         <attr name="innerBackground" format="color"/>
         <attr name="outerBackground" format="color"/>
         <attr name="roundWidth" format="dimension"/>
         <attr name="progressTextSize" format="dimension"/>
         <attr name="progressTextColor" format="color"/>
+    </declare-styleable>
+    
+    <!--自定义ratingbar-->
+    <declare-styleable name="MyRatingBar">
+        <attr name="starNormal" format="reference"/>
+        <attr name="starFocus" format="reference"/>
+        <attr name="gradeNumber" format="integer"/>
     </declare-styleable>
 </resources>

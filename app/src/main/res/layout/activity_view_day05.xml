@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.kaifa.customview.activity.ViewDay05Activity">
+
+    <com.kaifa.customview.widget.MyRatingBar
+        android:id="@+id/my_rating_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:gradeNumber="5"
+        app:starFocus="@drawable/ic_star_black_24dp"
+        app:starNormal="@drawable/ic_star_border_black_24dp" />
+</android.support.constraint.ConstraintLayout>

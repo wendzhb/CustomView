@@ -20,7 +20,9 @@
         <activity android:name=".activity.ViewDay02Activity" />
         <activity android:name=".activity.ViewDay03Activity" />
         <activity android:name=".activity.ViewPagerActivity" />
-        <activity android:name=".activity.ViewDay04Activity"/>
+        <activity android:name=".activity.ViewDay04Activity" />
+        <activity android:name=".activity.ViewDay05Activity" />
+        <activity android:name=".activity.ViewDay06Activity"></activity>
     </application>
 
 </manifest>
