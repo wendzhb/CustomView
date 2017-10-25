@@ -104,7 +104,9 @@ public class QQStepView extends View {
         RectF rectF = new RectF(center - radius, center - radius, center + radius, center + radius);
         canvas.drawArc(rectF, 135, 270, false, mOuterPaint);
 
-        if (mStepMax == 0) return;
+        if (mStepMax == 0) {
+            return;
+        }
 
         //6.2内圆弧 怎么画不能写死 百分比 由使用者设置
         float sweepAngle = (float) mStepCurrent / mStepMax;

@@ -1,0 +1,82 @@
+
+Android 的架构图
+    1.现象，textview.getmeasuredheight() 为什么拿不到
+
+    oncreate中调用了setContentView
+
+    setContentView()源码：
+
+    ensureSubDecor();
+
+    generateDecor()--- new DecorView(context, featureId, this, getAttributes())
+
+    之所以能够拿到控件的宽高是因为调用了 onmeasure() 指定的
+
+    setContentView 只是创建了DecorView 把我们的布局加载到了DecorView
+
+
+    activity启动流程
+
+    performLaunchActivity()---> activity.oncreate()
+
+    handleResumeActivity() -- > performResumeActivity() -- > activity的onresume()方法
+
+    wm.addView(decor, l); 才开始把我们的DecorView 加载到WindowManager,View的绘制流程这个时候才开始 measure() layout() draw()
+
+view的绘制流程
+
+    UML建模工具之后，用UML来画
+
+    wm.addView(decor, l);       WindowManagerImpl.addView
+
+    root.setView(view, wparams, panelParentView);
+
+    requestLayout(); -- > scheduleTraversals() -- >doTraversal()　-- > performTraversals()(网上的文章都是从这里开始的);
+
+    2.重点performTraversals()开始
+
+    第一个调用的方法，performMeasure(childWidthMeasureSpec, childHeightMeasureSpec);
+
+    ->mView.measure(childWidthMeasureSpec, childHeightMeasureSpec);
+
+    ->onMeasure(widthMeasureSpec, heightMeasureSpec);测量开始
+
+    ->LinearLayout.onMeasure(widthMeasureSpec, heightMeasureSpec)   //
+
+    ->measureVertical(int widthMeasureSpec, int heightMeasureSpec)
+
+    ->measureChildWithMargins(child, widthMeasureSpec, totalWidth,heightMeasureSpec, totalHeight);
+
+        childWidthMeasureSpec , childHeightMeasureSpec  测量模式,是通过
+
+        //源码
+        public static int getChildMeasureSpec(int spec, int padding, int childDimension) {
+                //父布局的宽高模式
+                int specMode = MeasureSpec.getMode(spec);
+                int specSize = MeasureSpec.getSize(spec);
+
+                int size = Math.max(0, specSize - padding);
+
+                int resultSize = 0;
+                int resultMode = 0;
+
+                switch (specMode) {
+                        // Parent has imposed an exact size on us
+                        case MeasureSpec.EXACTLY:
+
+
+    ->child.measure(childWidthMeasureSpec, childHeightMeasureSpec); //
+
+    这个时候我们都会调用setMeasuredDimension() 这个时候我们的布局才真正指定宽度和高度
+        mMeasuredWidth = measuredWidth;
+        mMeasuredHeight = measuredHeight;
+    mMeasuredWidth和mMeasuredHeight才开始有值
+
+    接着开始执行viewgroup的onMeasure()方法，这个时候要指定自己的宽高了
+    childHeight = child.getMeasuredHeight() + share;高度的算法，如果是垂直方向是不断的叠加子view的高度，
+    RelativeLayout高度的算法是指定子view里面最高的
+
+
+
+
+

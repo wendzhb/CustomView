@@ -66,6 +66,18 @@ public class TextView extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        //指定宽高
+//        widthMeasureSpec = childWidthMeasureSpec
+//        heightMeasureSpec = childHeightMeasureSpec
+
+        //wrap_content = AT_MOST
+        //match_parent fill_parent 100dp = EXACTLY
+        //模式和大小是由父布局和自己决定的
+        //比如 父布局是包裹内容 就算子布局是match_parent,这个时候的计算模式还是AT_MOST
+        //比如 父布局是match_parent 就算子布局是match_parent,这个时候的计算模式还是EXACTLY
+
+
         //布局的宽高都是由这个方法指定
         //指定控件的宽高
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);

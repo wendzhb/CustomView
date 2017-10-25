@@ -1,0 +1,40 @@
+
+1.View的绘制流程
+    measure()方法:
+    第一步 performMeasure():用于指定和测量layout中所有空间的宽高，对于ViewGroup，先去测量子view，然后根据子view的宽高
+          在来计算本身的宽高；对于view，他的宽高是由自己和父布局的测量模式决定的
+
+    第二步 performLayout：View->layout() -> onLayout()  摆放子布局 for循环所有子view，前提不是GONE，调用child.layout()
+          performLayout():用于摆放子布局 for循环所有子view，前提不是GONE，调用child.layout()摆放childview
+
+    第三步  performDraw():View ->draw()->
+           drawBackground();//画背景
+           onDraw(canvas);//画自己 viewgroup默认情况下不会调用（01.笔记）
+           dispatchDraw(canvas);画子view 不断地循环调用子view的draw()
+
+           performDraw()：用于绘制自己和子view，对于viewgroup首先绘制自己的背景，然后for循环绘制子view调用子view的draw()方法,
+                          对于view绘制自己的背景，绘制自己显示的内容
+
+    思考问题：
+            1.如果要获取view的高度，前提肯定需要调用测量方法
+            2.view的绘制流程是在onResume()之后才开始的（07.笔记）
+            3.addView、setVisibility等等，会调用requestLayout()重新走一遍view的绘制
+            4.优化的时候，根据知道源码写代码的时候优化，onDraw(), 不要布局嵌套等等
+
+2.自定义viewgroup-流式布局 TabLayout（可扩展性不太强 adaper设计模式）
+
+    2.1 onMeasure()指定宽高
+    2.1.1 for循环测量子view
+    2.1.2 根据子view计算和指定自己的布局
+
+    2.2 onLayout()
+    for循环拜访所有的子view
+
+    2.3 onDraw() 不需要了
+
+    2.4 子view的margin
+
+    2.5 最后的问题
+        2.5.1 高度不一样
+        2.5.2 数据肯定是从后台获取的值,设置TAG用adapter的方式
+        http://blog.csdn.net/z240336124/article/details/49250231

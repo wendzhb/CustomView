@@ -897,7 +897,9 @@ public class SpanUtils {
     }
 
     private void updateCharCharSequence() {
-        if (mText.length() == 0) return;
+        if (mText.length() == 0) {
+            return;
+        }
         int start = mBuilder.length();
         mBuilder.append(mText);
         int end = mBuilder.length();
@@ -1128,10 +1130,12 @@ public class SpanUtils {
             this.gapWidth = gapWidth;
         }
 
+        @Override
         public int getLeadingMargin(final boolean first) {
             return stripeWidth + gapWidth;
         }
 
+        @Override
         public void drawLeadingMargin(final Canvas c, final Paint p, final int x, final int dir,
                                       final int top, final int baseline, final int bottom,
                                       final CharSequence text, final int start, final int end,
@@ -1166,10 +1170,12 @@ public class SpanUtils {
             this.gapWidth = gapWidth;
         }
 
+        @Override
         public int getLeadingMargin(final boolean first) {
             return 2 * radius + gapWidth;
         }
 
+        @Override
         public void drawLeadingMargin(final Canvas c, final Paint p, final int x, final int dir,
                                       final int top, final int baseline, final int bottom,
                                       final CharSequence text, final int start, final int end,
@@ -1279,10 +1285,12 @@ public class SpanUtils {
             return bitmap;
         }
 
+        @Override
         public int getLeadingMargin(final boolean first) {
             return mBitmap.getWidth() + mPad;
         }
 
+        @Override
         public void drawLeadingMargin(final Canvas c, final Paint p, int x, final int dir,
                                       final int top, final int baseline, final int bottom,
                                       final CharSequence text, final int start, final int end,
@@ -1290,8 +1298,9 @@ public class SpanUtils {
             int st = ((Spanned) text).getSpanStart(this);
             int itop = layout.getLineTop(layout.getLineForOffset(st));
 
-            if (dir < 0)
+            if (dir < 0) {
                 x -= mBitmap.getWidth();
+            }
 
             int delta = totalHeight - mBitmap.getHeight();
 
@@ -1308,6 +1317,7 @@ public class SpanUtils {
             }
         }
 
+        @Override
         public void chooseHeight(final CharSequence text, final int start, final int end, final int istartv, final int v, final Paint.FontMetricsInt fm) {
             if (lineHeight == 0) {
                 lineHeight = v - istartv;
@@ -1323,33 +1333,57 @@ public class SpanUtils {
                 if (mVerticalAlignment == ALIGN_TOP) {
                     // the rest space should be filled with the end of line
                     if (end == ((Spanned) text).getSpanEnd(this)) {
-                        if (need0 > 0) fm.descent += need0;
-                        if (need1 > 0) fm.bottom += need1;
+                        if (need0 > 0) {
+                            fm.descent += need0;
+                        }
+                        if (need1 > 0) {
+                            fm.bottom += need1;
+                        }
                     }
                 } else if (mVerticalAlignment == ALIGN_CENTER) {
                     if (start == ((Spanned) text).getSpanStart(this)) {
-                        if (need0 > 0) fm.ascent -= need0 / 2;
-                        if (need1 > 0) fm.top -= need1 / 2;
+                        if (need0 > 0) {
+                            fm.ascent -= need0 / 2;
+                        }
+                        if (need1 > 0) {
+                            fm.top -= need1 / 2;
+                        }
                     } else {
                         if (!flag) {
-                            if (need0 > 0) fm.ascent += need0 / 2;
-                            if (need1 > 0) fm.top += need1 / 2;
+                            if (need0 > 0) {
+                                fm.ascent += need0 / 2;
+                            }
+                            if (need1 > 0) {
+                                fm.top += need1 / 2;
+                            }
                             flag = true;
                         }
                     }
                     if (end == ((Spanned) text).getSpanEnd(this)) {
-                        if (need0 > 0) fm.descent += need0 / 2;
-                        if (need1 > 0) fm.bottom += need1 / 2;
+                        if (need0 > 0) {
+                            fm.descent += need0 / 2;
+                        }
+                        if (need1 > 0) {
+                            fm.bottom += need1 / 2;
+                        }
                     }
                 } else {
                     // the top space should be filled with the first of line
                     if (start == ((Spanned) text).getSpanStart(this)) {
-                        if (need0 > 0) fm.ascent -= need0;
-                        if (need1 > 0) fm.top -= need1;
+                        if (need0 > 0) {
+                            fm.ascent -= need0;
+                        }
+                        if (need1 > 0) {
+                            fm.top -= need1;
+                        }
                     } else {
                         if (!flag) {
-                            if (need0 > 0) fm.ascent += need0;
-                            if (need1 > 0) fm.top += need1;
+                            if (need0 > 0) {
+                                fm.ascent += need0;
+                            }
+                            if (need1 > 0) {
+                                fm.top += need1;
+                            }
                             flag = true;
                         }
                     }
@@ -1544,8 +1578,9 @@ public class SpanUtils {
         private Drawable getCachedDrawable() {
             WeakReference<Drawable> wr = mDrawableRef;
             Drawable d = null;
-            if (wr != null)
+            if (wr != null) {
                 d = wr.get();
+            }
             if (d == null) {
                 d = getDrawable();
                 mDrawableRef = new WeakReference<>(d);

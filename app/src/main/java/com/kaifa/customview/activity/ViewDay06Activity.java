@@ -56,5 +56,13 @@ public class ViewDay06Activity extends BaseActivity implements LetterSideBar.Let
                 textView.setVisibility(View.GONE);
             }
         }, 500);
+
+        textView.post(new Runnable() {
+            //保存到Queue中,什么都没干，会在dispatchAttachedToWindow中在测量完毕之后执行，executeActions()
+            @Override
+            public void run() {
+                textView.setVisibility(View.GONE);
+            }
+        });
     }
 }
