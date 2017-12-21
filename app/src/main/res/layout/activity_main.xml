@@ -1,65 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<com.kaifa.customview.widget.SlidingMenu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.kaifa.customview.activity.MainActivity">
 
     <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/bt_01"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="view_day_01" />
+            android:background="@drawable/ic_star_border_black_24dp" />
 
-        <Button
-            android:id="@+id/bt_02"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="view_day_02" />
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/bt_03"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="view_day_03" />
+            <LinearLayout
+                android:layout_width="368dp"
+                android:layout_height="495dp"
+                android:orientation="vertical"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp">
 
-        <Button
-            android:id="@+id/vp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="viewpager" />
+                <com.kaifa.customview.widget.ScratchCard
+                    android:layout_width="300dp"
+                    android:layout_height="300dp" />
 
-        <Button
-            android:id="@+id/bt_04"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="view_day_04" />
+                <Button
+                    android:id="@+id/bt_01"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="view_day_01" />
 
-        <Button
-            android:id="@+id/bt_05"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="view_day_05" />
+                <Button
+                    android:id="@+id/bt_02"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="view_day_02" />
 
-        <Button
-            android:id="@+id/bt_06"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="view_day_06" />
+                <Button
+                    android:id="@+id/bt_03"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="view_day_03" />
 
-        <Button
-            android:id="@+id/bt_07"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="view_day_07" />
+                <Button
+                    android:id="@+id/vp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="viewpager" />
+
+                <Button
+                    android:id="@+id/bt_04"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="view_day_04" />
+
+                <Button
+                    android:id="@+id/bt_05"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="view_day_05" />
+
+                <Button
+                    android:id="@+id/bt_06"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="view_day_06" />
+
+                <Button
+                    android:id="@+id/bt_07"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="view_day_07" />
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
-</ScrollView>
+
+</com.kaifa.customview.widget.SlidingMenu>

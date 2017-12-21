@@ -7,6 +7,10 @@ import android.view.View;
 import com.kaifa.customview.R;
 import com.kaifa.customview.base.BaseActivity;
 
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -24,7 +28,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
     }
 
     @Override

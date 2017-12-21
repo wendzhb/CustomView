@@ -1,0 +1,77 @@
+1.View事件分发的回顾
+
+    onTouchListener（返回false） -> onTouchEvent -> onClickListener
+    onTouchListener如果返回true只会执行onTouchListener
+
+2.ViewGroup的事件分发
+    dispatchTouchEvent()
+
+    onInterceptTouchEvent()
+
+    onTouchEvent()
+
+    2.1正常情况下
+
+    第一次DOWN:ViewGroup.dispatchTouchEvent事件分发 ->ViewGroup.onInterceptTouchEvent->
+                View.dispatchTouchEvent事件分发(View.onTouch(onTouchListener)->View.onTouchEvent)
+
+    第二次MOVE:ViewGroup.dispatchTouchEvent->ViewGroup.onInterceptTouchEvent-> ->
+                View.dispatchTouchEvent事件分发(View.onTouch(onTouchListener)->View.onTouchEvent)
+
+    第三次UP:ViewGroup.dispatchTouchEvent->ViewGroup.onInterceptTouchEvent-> ->
+                View.dispatchTouchEvent事件分发(View.onTouch(onTouchListener)->View.onTouchEvent) ->View.OnClickListener
+
+    2.2 onClick没有
+
+    ViewGroup.dispatchTouchEvent->ViewGroup.onInterceptTouchEvent-> ->
+                    View.dispatchTouchEvent事件分发(View.onTouch(onTouchListener)->View.onTouchEvent)->ViewGroup.onTouchEvent
+
+    2.3 在View 的onTouchEvent()方法里面返回true的情况下
+
+    第一次DOWN:ViewGroup.dispatchTouchEvent事件分发 ->ViewGroup.onInterceptTouchEvent->
+                    View.dispatchTouchEvent事件分发(View.onTouch(onTouchListener)->View.onTouchEvent)
+
+    第二次MOVE:ViewGroup.dispatchTouchEvent->ViewGroup.onInterceptTouchEvent-> ->
+                View.dispatchTouchEvent事件分发(View.onTouch(onTouchListener)->View.onTouchEvent)
+
+    第三次UP:ViewGroup.dispatchTouchEvent->ViewGroup.onInterceptTouchEvent-> ->
+                View.dispatchTouchEvent事件分发(View.onTouch(onTouchListener)->View.onTouchEvent)
+
+    2.4 在viewgroup的onInterceptTouchEvent()方法里面返回true的情况下
+
+    ViewGroup.dispatchTouchEvent事件分发 ->ViewGroup.onInterceptTouchEvent->ViewGroup.onTouchEvent
+
+3.ViewGroup的源码分析
+
+    dispatchTouchEvent()事件分发
+
+        final int action = ev.getAction();
+        final int actionMasked = action & MotionEvent.ACTION_MASK;
+
+        // Handle an initial down.
+        if (actionMasked == MotionEvent.ACTION_DOWN) {
+            // Throw away all previous state when starting a new touch gesture.
+            // The framework may have dropped the up or cancel event for the previous gesture
+            // due to an app switch, ANR, or some other state change.
+            //清除
+            cancelAndClearTouchTargets(ev);
+            resetTouchState();
+        }
+
+        /**
+         * Clears all touch targets.
+         */
+        private void clearTouchTargets() {
+            TouchTarget target = mFirstTouchTarget;
+            if (target != null) {
+                do {
+                    TouchTarget next = target.next;
+                    target.recycle();
+                    target = next;
+                } while (target != null);
+                mFirstTouchTarget = null;//这句话是核心
+            }
+        }
+
+
+

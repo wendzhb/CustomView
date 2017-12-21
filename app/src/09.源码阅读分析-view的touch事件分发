@@ -1,9 +1,67 @@
 
 1.完善流式布局
+    1.1 高度不一样
+    1.2 数据肯定是从后台获取的值,设置TAG用adapter的方式
 
-
+        不采用传字符串的形式
 
 2.自定义view和viewgroup套路总结
+    2.1 自定义view的套路
+        2.1.1 自定义属性，获取自定义属性（得到配置的效果）
+        2.1.2 onMeasure()方法用于测量计算自己的宽高，前提是继承自view；如果是继承自系统已有的textview，button
+        2.1.3 onDraw()用于绘制自己的显示
+        2.1.4 onTouch()用于与用户交互
+
+    2.2 自定义viewgroup的套路：
+        2.2.1 自定义属性，获取自定义属性（得到配置的效果） -- 很少有
+        2.2.2 onMeasure()方法，for循环测量子view，根据子view的宽高来计算自己的宽高
+        2.2.3 onDraw()一般不需要，默认情况下是不会调用的，如果你要绘制需要实现dispatchDraw(Canvas canvas)方法
+        2.2.4 onLayout()用来摆放子view，前提是不是gone的情况
+        2.5.5 在很多情况下不会继承自viewgroup，往往是继承系统已经提供好的viewgroup和viewpager scrollview relativelayout
 
 
 3.view的touch事件分发
+
+    3.1现象 onTouch() onTouchEvent() onClickListener()三个都有的情况下
+
+        前提是onTouchListener()返回的是false
+        onTouchListener.DOWN -> onTouch.Down ->onTouchListener.MOVE ->onTouch.MOVE ->
+        onTouchListener.UP ->onTouch.UP -> onClickListener
+
+    3.2现象 onTouch() onTouchEvent() onClickListener()三个都有的情况下
+
+        前提是onTouchListener()返回的是true
+        onTouchListener.DOWN ->onTouchListener.MOVE -> onTouchListener.UP
+
+    3.3现象 onTouchEvent onClickListener 前提是 onTouchEvent返回true
+        onTouchListener.DOWN ->onTouchListener.MOVE
+
+4.View 与 Touch相关的有两个非常重要方法
+
+    4.1 dispatchTouchEvent 事件分发
+
+        boolean result = false;
+
+        ListenerInfo li = mListenerInfo;//存放了关于view的所有Listener信息，如 onTouchListener onClickListener
+        if (li != null && li.mOnTouchListener != null
+            && (mViewFlags & ENABLED_MASK) == ENABLED//是否是enable
+            && li.mOnTouchListener.onTouch(this, event)) {//如果是false result = false；如果是true result = true
+                result = true;
+        }
+
+        if (!result && onTouchEvent(event)) {//如果result = false 就会执行onTouchEvent,如果result = true 不会执行onTouchEvent
+                result = true;
+        }
+
+        //返回
+        return result;
+
+        到现在还没有点击事件 -- onTouchEvent()里面
+
+        case MotionEvent.ACTION_UP:  里面调用了performClick();
+
+        li.mOnClickListener.onClick(this);
+
+
+
+    4.2 onTouchEvent(一般会被我们复写)
