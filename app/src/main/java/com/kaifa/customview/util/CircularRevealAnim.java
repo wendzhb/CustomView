@@ -26,10 +26,14 @@ public class CircularRevealAnim {
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
             if (isShow) {
                 animView.setVisibility(View.VISIBLE);
-                if (mListener != null) mListener.onShowAnimationEnd();
+                if (mListener != null) {
+                    mListener.onShowAnimationEnd();
+                }
             } else {
                 animView.setVisibility(View.GONE);
-                if (mListener != null) mListener.onHideAnimationEnd();
+                if (mListener != null) {
+                    mListener.onHideAnimationEnd();
+                }
             }
             return;
         }
@@ -76,10 +80,14 @@ public class CircularRevealAnim {
                 super.onAnimationEnd(animation);
                 if (isShow) {
                     animView.setVisibility(View.VISIBLE);
-                    if (mListener != null) mListener.onShowAnimationEnd();
+                    if (mListener != null) {
+                        mListener.onShowAnimationEnd();
+                    }
                 } else {
                     animView.setVisibility(View.GONE);
-                    if (mListener != null) mListener.onHideAnimationEnd();
+                    if (mListener != null) {
+                        mListener.onHideAnimationEnd();
+                    }
                 }
             }
         });

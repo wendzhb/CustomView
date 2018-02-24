@@ -19,6 +19,8 @@ import com.kaifa.customview.R;
 
 /**
  * Created by yxd on 2017/5/31.
+ *
+ * 仿QQ导航图标
  */
 
 public class QQNaviView extends LinearLayout {

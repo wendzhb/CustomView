@@ -77,6 +77,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="view_day_07" />
+
+                <Button
+                    android:id="@+id/bt_09"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="view_day_09" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

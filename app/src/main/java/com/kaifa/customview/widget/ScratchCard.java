@@ -17,6 +17,8 @@ import com.kaifa.customview.R;
 
 /**
  * Created by zhb on 2017/12/20.
+ *
+ * 刮刮乐效果
  */
 
 public class ScratchCard extends View {

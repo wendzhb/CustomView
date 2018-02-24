@@ -12,6 +12,8 @@ import android.view.View;
 
 /**
  * Created by zhb on 2017/10/13.
+ *
+ * 字母条
  */
 
 public class LetterSideBar extends View {

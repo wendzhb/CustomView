@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity {
     protected void setListener() {
     }
 
-    @OnClick({R.id.bt_01, R.id.bt_02, R.id.bt_03, R.id.bt_04, R.id.bt_05, R.id.bt_06,R.id.bt_07, R.id.vp})
+    @OnClick({R.id.bt_01, R.id.bt_02, R.id.bt_03, R.id.bt_04, R.id.bt_05, R.id.bt_06, R.id.bt_07, R.id.vp, R.id.bt_09})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_01:
@@ -68,6 +68,10 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.bt_07:
                 startActivity(new Intent(this, ViewDay07Activity.class));
+
+                break;
+            case R.id.bt_09:
+                startActivity(new Intent(this, ViewDay09Activity.class));
 
                 break;
             case R.id.vp:
