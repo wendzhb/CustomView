@@ -2,27 +2,25 @@ package com.kaifa.customview.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Matrix;
+import android.graphics.Color;
 import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.view.animation.Animation;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.kaifa.customview.R;
-import com.nineoldandroids.view.ViewHelper;
 
 /**
  * Created by zhb on 2017/12/21.
  */
 
-public class SlidingMenu extends HorizontalScrollView {
+public class QQSlidingMenu extends HorizontalScrollView {
 
     /**
      * 屏幕宽度
@@ -41,6 +39,8 @@ public class SlidingMenu extends HorizontalScrollView {
 
     private ViewGroup mMenu;
     private ViewGroup mContent;
+
+    private View mShadowView;
 
     /**
      * 菜单是否打开
@@ -75,15 +75,15 @@ public class SlidingMenu extends HorizontalScrollView {
     private boolean isOpen;
     private boolean mIsIntercept;
 
-    public SlidingMenu(Context context) {
+    public QQSlidingMenu(Context context) {
         this(context, null);
     }
 
-    public SlidingMenu(Context context, AttributeSet attrs) {
+    public QQSlidingMenu(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SlidingMenu(Context context, AttributeSet attrs, int defStyleAttr) {
+    public QQSlidingMenu(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 //        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 //        mScreenWidth = wm.getDefaultDisplay().getWidth();
@@ -118,15 +118,30 @@ public class SlidingMenu extends HorizontalScrollView {
             LinearLayout wrapper = (LinearLayout) getChildAt(0);
             mMenu = (ViewGroup) wrapper.getChildAt(0);
             mContent = (ViewGroup) wrapper.getChildAt(1);
+
             // dp to px
             mMenuRightPadding = (int) TypedValue.applyDimension(
                     TypedValue.COMPLEX_UNIT_DIP, mMenuRightPadding, mContent
                             .getResources().getDisplayMetrics());
-
             mMenuWidth = mScreenWidth - mMenuRightPadding;
             mHalfMenuWidth = mMenuWidth / 2;
             mMenu.getLayoutParams().width = mMenuWidth;
+
+            //把内容布局单独提取出来
+            wrapper.removeView(mContent);
+            //套一层阴影
+            RelativeLayout contentContainer = new RelativeLayout(getContext());
+            contentContainer.addView(mContent);
+            mShadowView = new View(getContext());
+            mShadowView.setBackgroundColor(Color.parseColor("#55000000"));
+            contentContainer.addView(mShadowView);
+            //放回到原来的位置
             mContent.getLayoutParams().width = mScreenWidth;
+            contentContainer.setLayoutParams(mContent.getLayoutParams());
+            wrapper.addView(contentContainer);
+            mShadowView.setAlpha(0.0f);
+
+
 
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -181,29 +196,26 @@ public class SlidingMenu extends HorizontalScrollView {
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
         float scale = l * 1.0f / mMenuWidth;
+
+        //控制阴影
+        float alphaScale = 1 - scale;
+        mShadowView.setAlpha(alphaScale);
         float leftScale = 1 - 0.3f * scale;
         float rightScale = 0.8f + scale * 0.2f;
 
-//        ViewHelper.setScaleX(mMenu, leftScale);
-//        ViewHelper.setScaleY(mMenu, leftScale);
-//        ViewHelper.setAlpha(mMenu, 0.6f + 0.4f *  (1 - scale));
-//        ViewHelper.setTranslationX(mMenu, mMenuWidth * scale * 0.6f);
-//
-//        ViewHelper.setPivotX(mContent, 0);
-//        ViewHelper.setPivotY(mContent, mContent.getHeight() / 2);
-//        ViewHelper.setScaleX(mContent, rightScale);
-//        ViewHelper.setScaleY(mContent, rightScale);
 
-        ViewCompat.setScaleX(mMenu, leftScale);
-        ViewCompat.setScaleY(mMenu, leftScale);
-        ViewCompat.setAlpha(mMenu, 0.6f + 0.4f * (1 - scale));
+//        ViewCompat.setScaleX(mMenu, leftScale);
+//        ViewCompat.setScaleY(mMenu, leftScale);
+//        ViewCompat.setAlpha(mMenu, 0.6f + 0.4f * (1 - scale));
+//        ViewCompat.setTranslationX(mMenu, mMenuWidth * scale * 0.6f);
+
+//        ViewCompat.setPivotX(mContent, 0);
+//        ViewCompat.setPivotY(mContent, mContent.getHeight() / 2);
+//        ViewCompat.setScaleX(mContent, rightScale);
+//        ViewCompat.setScaleY(mContent, rightScale);
+
         ViewCompat.setTranslationX(mMenu, mMenuWidth * scale * 0.6f);
 
-        ViewCompat.setPivotX(mContent, 0);
-        ViewCompat.setPivotY(mContent, mContent.getHeight() / 2);
-        ViewCompat.setScaleX(mContent, rightScale);
-        ViewCompat.setScaleY(mContent, rightScale);
-//        ViewHelper.setTranslationX(mMenu, mMenuWidth * scale );
 
     }
 

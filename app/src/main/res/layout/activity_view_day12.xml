@@ -4,13 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kaifa.customview.activity.ViewDay05Activity">
+    tools:context="com.kaifa.customview.activity.ViewDay12Activity">
 
-    <com.kaifa.customview.widget.MyRatingBar
-        android:id="@+id/my_rating_bar"
+    <com.kaifa.customview.kotlin.LockPatternView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:gradeNumber="5"
-        app:starFocus="@mipmap/ic_launcher_round"
-        app:starNormal="@mipmap/ic_launcher" />
+        android:layout_height="match_parent" />
 </android.support.constraint.ConstraintLayout>

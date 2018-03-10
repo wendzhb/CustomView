@@ -116,6 +116,11 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
         }
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
     /**
      * 初始化SearchFragment
      */
@@ -133,8 +138,9 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
      */
     @Override
     public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
             hideAnim();
+            return true;
         } else if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
             search();
         }
@@ -196,7 +202,7 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
         }
     }
 
-    private void hideAnim() {
+    public void hideAnim() {
         KeyBoardUtils.closeKeyboard(getContext(), etSearchKeyword);
         mCircularRevealAnim.hide(ivSearchSearch, view);
     }

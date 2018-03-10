@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.kaifa.customview.widget.SlidingMenu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,6 +30,23 @@
                 <com.kaifa.customview.widget.ScratchCard
                     android:layout_width="300dp"
                     android:layout_height="300dp" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/iv"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <com.kaifa.customview.widget.BlurView
+                        android:id="@+id/bv"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp" />
+                </RelativeLayout>
+
 
                 <Button
                     android:id="@+id/bt_01"
@@ -83,6 +101,97 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="view_day_09" />
+
+                <Button
+                    android:id="@+id/bt_10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="view_day_10" />
+
+                <Button
+                    android:id="@+id/bt_11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="view_day_11" />
+
+                <Button
+                    android:id="@+id/bt_12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="view_day_12" />
+
+                <Button
+                    android:id="@+id/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="search" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="#ffffff"
+                    android:elevation="4dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="4dp">
+
+                    <com.kaifa.customview.widget.QQNaviView
+                        android:id="@+id/qq_view_bubble"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        app:bigIconSrc="@drawable/pre_bubble_big"
+                        app:iconHeight="50dp"
+                        app:iconWidth="50dp"
+                        app:range="1.2"
+                        app:smallIconSrc="@drawable/pre_bubble_small">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="消息"
+                            android:textSize="12sp" />
+
+                    </com.kaifa.customview.widget.QQNaviView>
+
+                    <com.kaifa.customview.widget.QQNaviView
+                        android:id="@+id/qq_view_person"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:bigIconSrc="@drawable/pre_person_big"
+                        app:iconHeight="50dp"
+                        app:iconWidth="50dp"
+                        app:smallIconSrc="@drawable/pre_person_small">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="联系人"
+                            android:textSize="12sp" />
+
+                    </com.kaifa.customview.widget.QQNaviView>
+
+                    <com.kaifa.customview.widget.QQNaviView
+                        android:id="@+id/qq_view_star"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:bigIconSrc="@drawable/pre_star_big"
+                        app:iconHeight="50dp"
+                        app:iconWidth="50dp"
+                        app:smallIconSrc="@drawable/pre_star_small">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="动态"
+                            android:textSize="12sp" />
+
+                    </com.kaifa.customview.widget.QQNaviView>
+
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

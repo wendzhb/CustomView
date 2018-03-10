@@ -21,7 +21,7 @@
     第三次UP:ViewGroup.dispatchTouchEvent->ViewGroup.onInterceptTouchEvent-> ->
                 View.dispatchTouchEvent事件分发(View.onTouch(onTouchListener)->View.onTouchEvent) ->View.OnClickListener
 
-    2.2 onClick没有
+    2.2 onClick没有 理解没有消费事件
 
     ViewGroup.dispatchTouchEvent->ViewGroup.onInterceptTouchEvent-> ->
                     View.dispatchTouchEvent事件分发(View.onTouch(onTouchListener)->View.onTouchEvent)->ViewGroup.onTouchEvent
@@ -72,6 +72,59 @@
                 mFirstTouchTarget = null;//这句话是核心
             }
         }
+
+
+        DOWN事件正常情况下会触发
+
+        intercepted = onInterceptTouchEvent(ev);
+        onInterceptTouchEvent(MotionEvent ev)   默认返回false
+
+        if (!canceled && !intercepted) {    默认情况下 if 能够执行
+
+            if (newTouchTarget == null && childrenCount != 0) {//DOWN 会执行
+
+                for (int i = childrenCount - 1; i >= 0; i--) {//反序的for循环 获取子view
+                    if (dispatchTransformedTouchEvent(ev, false, child, idBitsToAssign)) {
+
+                        newTouchTarget = addTouchTarget(child, idBitsToAssign);//如果子view返回true就会进来 主要给mFirstTouchTarget = target;赋值
+
+                    }
+                }
+            }
+
+        }
+
+        private boolean dispatchTransformedTouchEvent(MotionEvent event, boolean cancel,
+                    View child, int desiredPointerIdBits) {
+            ...
+            // Canceling motions is a special case.  We don't need to perform any transformations
+            // or filtering.  The important part is the action, not the contents.
+            final int oldAction = event.getAction();
+            if (cancel || oldAction == MotionEvent.ACTION_CANCEL) {
+                event.setAction(MotionEvent.ACTION_CANCEL);
+                if (child == null) {
+                    //会调用自己的 super View.dispatchTouchEvent(event)
+                    handled = super.dispatchTouchEvent(event);
+                } else {
+                    //如果child不是空，会调用 child 的dispatchTouchEvent(event)
+                    handled = child.dispatchTouchEvent(event);
+                }
+                event.setAction(oldAction);
+                return handled;
+            }
+            ...
+        }
+
+    onInterceptTouchEvent(MotionEvent ev) 事件拦截
+
+    onTouchEvent 事件触摸
+
+    如果说子View没有一个地方返回 true，只会进入一次,只会响应DOWN事件，代表不需要消费该事件,如果你想响应MOVE,UP 必须找个地方返回true;
+
+    对于viewgroup来讲,如果想拦截子View的onTouch事件，可以复写onInterceptTouchEvent() 返回 true即可，
+    如果说onInterceptTouchEvent返回true，会执行viewgroup的onTouchEvent,
+    如果子View没有消费touch事件,也会调用该viewgroup的 onTouchEvent方法
+
 
 
 

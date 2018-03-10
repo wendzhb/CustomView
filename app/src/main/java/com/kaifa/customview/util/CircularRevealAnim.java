@@ -9,7 +9,7 @@ import android.view.animation.DecelerateInterpolator;
 
 public class CircularRevealAnim {
 
-    public static final long DURATION = 200;
+    public static final long DURATION = 1000;
 
     private AnimListener mListener;
 

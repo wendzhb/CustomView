@@ -1,0 +1,45 @@
+1.ViewDragHelper介绍
+    1.1创建:
+            mDragHelper = ViewDragHelper.create(this, mDrawHelperCallback);
+    1.2实现拖动:
+        @Override
+        public boolean onTouchEvent(MotionEvent event) {
+            mDragHelper.processTouchEvent(event);
+            return true;
+        }
+
+        //拖动我们的自View
+        private ViewDragHelper.Callback mDrawHelperCallback = new ViewDragHelper.Callback() {
+            @Override
+            public boolean tryCaptureView(View child, int pointerId) {
+                //指定该子View是否可以拖动，就是child
+                return true;
+            }
+
+            @Override
+            public int clampViewPositionVertical(View child, int top, int dy) {
+                //垂直拖动移动的位置
+                return top;
+            }
+
+            @Override
+            public int clampViewPositionHorizontal(View child, int left, int dx) {
+                //水平拖动移动的位置
+                return left;
+            }
+        };
+
+2.效果分析实现
+    2.1后面的子View不能拖动
+
+    2.2列表只能垂直拖动
+
+    2.3垂直拖动的范围,只能是后面菜单View的高度
+
+        在哪里获取菜单的高度?获取控件的宽高一定是要在测量完毕之后才能去拿，也就是要在onMeasure()之后
+        mMenuHeight = getChildAt(0).getMeasuredHeight();
+
+
+    2.4手指松开的时候两者选其一，要么打开要么关闭
+
+3.事件分发和拦截
