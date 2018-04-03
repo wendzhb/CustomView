@@ -67,7 +67,7 @@ public class MainActivity extends BaseActivity {
         mStarView.setSmallIcon(R.drawable.pre_star_small);
     }
 
-    @OnClick({R.id.search, R.id.qq_view_bubble, R.id.qq_view_person, R.id.qq_view_star, R.id.bt_01,
+    @OnClick({R.id.point,R.id.search, R.id.qq_view_bubble, R.id.qq_view_person, R.id.qq_view_star, R.id.bt_01,
             R.id.bt_02, R.id.bt_03, R.id.bt_04, R.id.bt_05, R.id.bt_06, R.id.bt_07, R.id.vp,
             R.id.bt_09, R.id.bt_10, R.id.bt_11, R.id.bt_12})
     public void onViewClicked(View view) {
@@ -123,6 +123,10 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.search:
                 searchFragment.show(getSupportFragmentManager(), SearchFragment.TAG);
+
+                break;
+            case R.id.point:
+                startActivity(new Intent(this, PointActivity.class));
 
                 break;
 
