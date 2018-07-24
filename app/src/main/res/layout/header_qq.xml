@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@color/white">
+
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="@dimen/sp14"
+        tools:text="下拉刷新" />
+
+    <View
+        android:id="@+id/successIcon"
+        android:layout_width="13dp"
+        android:layout_height="13dp"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/text"
+        android:background="@drawable/finish_refresh"
+        android:visibility="invisible"
+        tools:ignore="RtlHardcoded" />
+
+    <ImageView
+        android:id="@+id/arrowIcon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="30dp"
+        android:layout_toLeftOf="@id/text"
+        android:scaleType="fitCenter"
+        android:src="@drawable/pulldown_refresh" />
+
+    <ImageView
+        android:id="@+id/loadingIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="30dp"
+        android:layout_toLeftOf="@id/text"
+        android:scaleType="center"
+        android:src="@drawable/loading_refresh"
+        android:visibility="invisible" />
+
+</RelativeLayout>

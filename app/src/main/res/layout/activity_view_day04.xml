@@ -23,10 +23,24 @@
         android:text="exchange"
         android:onClick="exchanger"/>
 
+
     <com.kaifa.customview.widget.ShapeView
         android:id="@+id/shapeview"
         android:layout_width="30dp"
         android:layout_height="30dp" />
+
+
+    <TextView
+        android:id="@+id/promptTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/indication"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:text="玩命加载中..."
+        android:textColor="#757575"
+        android:textSize="14sp" />
+
 
     <RatingBar
         android:layout_width="match_parent"

@@ -3,6 +3,7 @@ package com.kaifa.customview.widget;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -33,6 +34,7 @@ import java.util.ArrayList;
  */
 
 public class SearchFragment extends DialogFragment implements DialogInterface.OnKeyListener, ViewTreeObserver.OnPreDrawListener, CircularRevealAnim.AnimListener, View.OnClickListener {
+
 
     public static final String TAG = "SearchFragment";
     private ImageView ivSearchBack;

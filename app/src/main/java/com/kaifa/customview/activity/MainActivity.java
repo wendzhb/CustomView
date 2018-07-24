@@ -2,7 +2,6 @@ package com.kaifa.customview.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -38,6 +37,7 @@ public class MainActivity extends BaseActivity {
         mBubbleView = (QQNaviView) findViewById(R.id.qq_view_bubble);
         mPersonView = (QQNaviView) findViewById(R.id.qq_view_person);
         mStarView = (QQNaviView) findViewById(R.id.qq_view_star);
+
     }
 
     @Override
@@ -67,9 +67,9 @@ public class MainActivity extends BaseActivity {
         mStarView.setSmallIcon(R.drawable.pre_star_small);
     }
 
-    @OnClick({R.id.point,R.id.search, R.id.qq_view_bubble, R.id.qq_view_person, R.id.qq_view_star, R.id.bt_01,
-            R.id.bt_02, R.id.bt_03, R.id.bt_04, R.id.bt_05, R.id.bt_06, R.id.bt_07, R.id.vp,
-            R.id.bt_09, R.id.bt_10, R.id.bt_11, R.id.bt_12})
+    @OnClick({R.id.point, R.id.search, R.id.qq_view_bubble, R.id.qq_view_person, R.id.md, R.id.qq_view_star, R.id.bt_01,
+            R.id.bt_02, R.id.bt_03, R.id.bt_04, R.id.bt_05, R.id.bt_06, R.id.bt_07, R.id.vp, R.id.loading, R.id.qqtoolbar,
+            R.id.bt_09, R.id.bt_10, R.id.bt_11, R.id.bt_12, R.id.behavior_main})
     public void onViewClicked(View view) {
         resetIcon();
         switch (view.getId()) {
@@ -129,6 +129,10 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(this, PointActivity.class));
 
                 break;
+            case R.id.qqtoolbar:
+                startActivity(new Intent(this, QQToolbarActivity.class));
+
+                break;
 
             case R.id.qq_view_bubble:
                 mBubbleView.setBigIcon(R.drawable.bubble_big);
@@ -142,13 +146,25 @@ public class MainActivity extends BaseActivity {
                 mStarView.setBigIcon(R.drawable.star_big);
                 mStarView.setSmallIcon(R.drawable.star_small);
                 break;
+            case R.id.md:
+                startActivity(new Intent(this, MeterialDesignActivity.class));
+
+                break;
+            case R.id.loading:
+                startActivity(new Intent(this, LoadingViewActivity.class));
+
+                break;
+            case R.id.behavior_main:
+                startActivity(new Intent(this, BehaviorActivity.class));
+
+                break;
+
         }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
 }
