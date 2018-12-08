@@ -1,0 +1,53 @@
+1.分割线
+    现象：如果分割线的宽度比较大，那么最后一个item的宽度比其他的item要宽
+
+    recycleview 源码分析-分割线
+
+    猜想：既然考虑了分割线，那么子View在测量的时候肯定要去考虑分割线留出的位置 measureChild()方法
+
+
+    /**
+     * Measure a child view using standard measurement policy, taking the padding
+     * of the parent RecyclerView and any added item decorations into account.
+     *
+     * <p>If the RecyclerView can be scrolled in either dimension the caller may
+     * pass 0 as the widthUsed or heightUsed parameters as they will be irrelevant.</p>
+     *
+     * @param child Child view to measure
+     * @param widthUsed Width in pixels currently consumed by other views, if relevant
+     * @param heightUsed Height in pixels currently consumed by other views, if relevant
+     */
+    public void measureChild(View child, int widthUsed, int heightUsed) {
+        final LayoutParams lp = (LayoutParams) child.getLayoutParams();
+
+        //最主要的方法    返回的是分割线要考虑的rect getitemoffset
+        final Rect insets = mRecyclerView.getItemDecorInsetsForChild(child);
+        //测量的时候考虑分割线
+        widthUsed += insets.left + insets.right;
+        heightUsed += insets.top + insets.bottom;
+        final int widthSpec = getChildMeasureSpec(getWidth(), getWidthMode(),
+                getPaddingLeft() + getPaddingRight() + widthUsed, lp.width,
+                canScrollHorizontally());
+        final int heightSpec = getChildMeasureSpec(getHeight(), getHeightMode(),
+                getPaddingTop() + getPaddingBottom() + heightUsed, lp.height,
+                canScrollVertically());
+        if (shouldMeasureChild(child, widthSpec, heightSpec, lp)) {
+            child.measure(widthSpec, heightSpec);
+        }
+    }
+
+    猜想：分割线会调用绘制的方法 onDraw()
+
+    @Override
+    public void onDraw(Canvas c) {
+        super.onDraw(c);
+
+        final int count = mItemDecorations.size();
+        for (int i = 0; i < count; i++) {
+            mItemDecorations.get(i).onDraw(c, this, mState);
+        }
+    }
+
+2.添加头尾 参考listview源码
+
+3.上拉刷新下拉加载

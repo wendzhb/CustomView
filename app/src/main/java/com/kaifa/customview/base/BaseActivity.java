@@ -15,7 +15,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView();
 //        StatusBarUtils.setStatusBarColor(this, Color.BLUE);
-        StatusBarUtils.setActivityTranslucent(this);
+//        StatusBarUtils.setActivityTranslucent(this);
         ButterKnife.bind(this);
         initView();
         initData();

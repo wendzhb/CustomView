@@ -33,7 +33,8 @@
         <activity android:name=".activity.MeterialDesignActivity" />
         <activity android:name=".activity.LoadingViewActivity" />
         <activity android:name=".activity.QQToolbarActivity" />
-        <activity android:name=".activity.BehaviorActivity"></activity>
+        <activity android:name=".activity.BehaviorActivity" />
+        <activity android:name=".activity.RecycleViewActivity"></activity>
     </application>
 
 </manifest>

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kaifa.customview.R;
+import com.kaifa.customview.ViewHolder;
 import com.kaifa.customview.base.BaseActivity;
 
 public class BehaviorActivity extends BaseActivity {
@@ -60,10 +61,4 @@ public class BehaviorActivity extends BaseActivity {
 
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-        }
-    }
 }

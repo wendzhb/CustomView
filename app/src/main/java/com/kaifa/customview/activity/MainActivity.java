@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity {
 
     @OnClick({R.id.point, R.id.search, R.id.qq_view_bubble, R.id.qq_view_person, R.id.md, R.id.qq_view_star, R.id.bt_01,
             R.id.bt_02, R.id.bt_03, R.id.bt_04, R.id.bt_05, R.id.bt_06, R.id.bt_07, R.id.vp, R.id.loading, R.id.qqtoolbar,
-            R.id.bt_09, R.id.bt_10, R.id.bt_11, R.id.bt_12, R.id.behavior_main})
+            R.id.bt_09, R.id.bt_10, R.id.bt_11, R.id.bt_12, R.id.behavior_main, R.id.recycler_main})
     public void onViewClicked(View view) {
         resetIcon();
         switch (view.getId()) {
@@ -156,6 +156,10 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.behavior_main:
                 startActivity(new Intent(this, BehaviorActivity.class));
+
+                break;
+            case R.id.recycler_main:
+                startActivity(new Intent(this, RecycleViewActivity.class));
 
                 break;
 

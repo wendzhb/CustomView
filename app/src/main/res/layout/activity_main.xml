@@ -131,16 +131,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="search" />
+
                 <Button
                     android:id="@+id/md"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="md" />
+
                 <Button
                     android:id="@+id/loading"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="loading" />
+
                 <Button
                     android:id="@+id/qqtoolbar"
                     android:layout_width="match_parent"
@@ -152,6 +155,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="behavior" />
+
+                <Button
+                    android:id="@+id/recycler_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="RecycleView" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -222,8 +231,6 @@
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
-
-
 
 
 </com.kaifa.customview.widget.SlidingMenu>
