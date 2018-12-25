@@ -8,14 +8,18 @@ import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.kaifa.customview.R;
 import com.kaifa.customview.ViewHolder;
+import com.kaifa.customview.banner.BannerAdapter;
+import com.kaifa.customview.banner.BannerView;
 import com.kaifa.customview.base.BaseActivity;
 import com.kaifa.customview.recycleview.WrapRecyclerAdapter;
 import com.kaifa.customview.recycleview.WrapRecyclerView;
@@ -33,6 +37,7 @@ public class RecycleViewActivity extends BaseActivity implements RefreshRecycler
     private LoadRefreshRecyclerView recyclerView;
     private List<Integer> mList;
     private RecyclerView.Adapter adapter;
+    private List<Integer> banners;
 
     @Override
     protected void setContentView() {
@@ -77,11 +82,44 @@ public class RecycleViewActivity extends BaseActivity implements RefreshRecycler
 //        recyclerView.addHeaderView(LayoutInflater.from(this).inflate(R.layout.item_tag,null,false));
 //        recyclerView.addFooterView(LayoutInflater.from(this).inflate(R.layout.item_tag,null,false));
 
+        banners = new ArrayList();
+        banners.add(R.drawable.ic_channel_recommend_label);
+        banners.add(R.drawable.ic_channel_recommend_label_night);
+
+        BannerView bannerView = (BannerView) LayoutInflater.from(this)
+                .inflate(R.layout.layout_banner_view, recyclerView, false);
+
+
+        bannerView.setAdapter(new BannerAdapter() {
+            @Override
+            public View getView(int position, View convertView) {
+                if (convertView == null) {
+                    convertView = new ImageView(RecycleViewActivity.this);
+                }
+                ((ImageView) convertView).setScaleType(ImageView.ScaleType.CENTER_CROP);
+
+                ((ImageView) convertView).setImageResource(banners.get(position));
+                return convertView;
+            }
+
+            @Override
+            public int getCount() {
+                return banners.size();
+            }
+
+            @Override
+            public String getBannerDesc(int position) {
+                return banners.get(position).toString();
+            }
+        });
+
+        recyclerView.addHeaderView(bannerView);
+
         // 添加头部和底部刷新效果
-        recyclerView.addRefreshViewCreator(new DefaultRefreshCreator());
-        recyclerView.addLoadViewCreator(new DefaultLoadCreator());
-        recyclerView.setOnRefreshListener(this);
-        recyclerView.setOnLoadMoreListener(this);
+//        recyclerView.addRefreshViewCreator(new DefaultRefreshCreator());
+//        recyclerView.addLoadViewCreator(new DefaultLoadCreator());
+//        recyclerView.setOnRefreshListener(this);
+//        recyclerView.setOnLoadMoreListener(this);
 
     }
 
@@ -127,7 +165,7 @@ public class RecycleViewActivity extends BaseActivity implements RefreshRecycler
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                recyclerView.onStopRefresh();
+                recyclerView.onRefreshComplete();
             }
         }, 2000);
     }
@@ -138,7 +176,7 @@ public class RecycleViewActivity extends BaseActivity implements RefreshRecycler
             @Override
             public void run() {
                 setData();
-                recyclerView.onStopLoad();
+                recyclerView.onLoadComplete();
             }
         }, 2000);
     }

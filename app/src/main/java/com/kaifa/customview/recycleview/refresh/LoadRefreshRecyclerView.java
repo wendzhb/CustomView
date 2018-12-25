@@ -199,7 +199,7 @@ public class LoadRefreshRecyclerView extends RefreshRecyclerView {
     /**
      * 停止加载更多
      */
-    public void onStopLoad() {
+    public void onLoadComplete() {
         mCurrentLoadStatus = LOAD_STATUS_NORMAL;
         restoreLoadView();
         if (mLoadCreator != null) {

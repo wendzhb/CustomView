@@ -123,13 +123,28 @@ public class GridLayoutItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     private boolean isLastRow(int position, RecyclerView parent) {
-        int spanCount = ((GridLayoutManager) parent.getLayoutManager()).getSpanCount();
+        int spanCount = getSpanCount(parent);
         int line = Double.valueOf(Math.ceil(parent.getAdapter().getItemCount() / (double) spanCount)).intValue();
         return (position + 1) > (spanCount * (line - 1));
     }
 
     private boolean isLastColumn(int position, RecyclerView parent) {
-        int spanCount = ((GridLayoutManager) parent.getLayoutManager()).getSpanCount();
+        int spanCount = getSpanCount(parent);
         return (position + 1) % spanCount == 0;
+    }
+
+    /**
+     * 获取一行有多少列
+     */
+    public int getSpanCount(RecyclerView parent) {
+        RecyclerView.LayoutManager layoutManager = parent.getLayoutManager();
+
+        if (layoutManager instanceof GridLayoutManager) {
+            // 获取一行的spanCount
+            GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
+            int spanCount = gridLayoutManager.getSpanCount();
+            return spanCount;
+        }
+        return 1;
     }
 }

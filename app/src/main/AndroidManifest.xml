@@ -34,7 +34,13 @@
         <activity android:name=".activity.LoadingViewActivity" />
         <activity android:name=".activity.QQToolbarActivity" />
         <activity android:name=".activity.BehaviorActivity" />
-        <activity android:name=".activity.RecycleViewActivity"></activity>
+        <activity android:name=".activity.RecycleViewActivity" />
+        <activity android:name=".activity.DragItemAnimatorActivity" />
+        <activity android:name=".activity.ViewDay13Activity" />
+        <activity android:name=".activity.ViewDay14Activity" />
+        <activity android:name=".activity.ViewDay15Activity" />
+        <activity android:name=".activity.ViewDay16Activity"></activity>
+        <activity android:name=".activity.ViewDay17Activity"></activity>
     </application>
 
 </manifest>

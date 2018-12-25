@@ -223,7 +223,7 @@ public class RefreshRecyclerView extends WrapRecyclerView {
     /**
      * 停止刷新
      */
-    public void onStopRefresh() {
+    public void onRefreshComplete() {
         mCurrentRefreshStatus = REFRESH_STATUS_NORMAL;
         restoreRefreshView();
         if (mRefreshCreator != null) {

@@ -1,0 +1,12 @@
+1.观察者设计模式
+    adapter如何去调用listdatascreenview的方法
+
+    1.1方式一 可以写一个监听 通过activity去掉用listdatascreenview的方法
+    1.2方式二 可以让adapter去持有listdatascreenview
+    1.3方式三 利用观察者设计模式
+
+2.仿花树直播加载动画
+    效果分析：三个点，每次回到中心会交换颜色，属性动画控制运动
+    思路：relativelayout + 三个View(圆形) + 属性动画反复运动 + 监听动画执行，在合适的时间交换颜色
+
+    跑起来，中间点不动只是切换颜色，旁边的两个点往两边跑，然后在往中间跑，跑到中间切换颜色

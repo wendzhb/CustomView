@@ -9,6 +9,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -43,7 +44,7 @@ public class BannerViewPager extends ViewPager {
     // 10.内存优化 --> 当前Activity
     private Activity mActivity;
     // 10.内存优化 --> 复用的View
-    private List<View> mConvertViews;
+    private SparseArray<View> mConvertViews;
 
     public BannerViewPager(Context context) {
         this(context, null);
@@ -68,7 +69,7 @@ public class BannerViewPager extends ViewPager {
             e.printStackTrace();
         }
 
-        mConvertViews = new ArrayList<>();
+        mConvertViews = new SparseArray<>();
         initHandler();
     }
 
@@ -181,7 +182,8 @@ public class BannerViewPager extends ViewPager {
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);
-            mConvertViews.add((View) object);
+            mConvertViews.append(position%mAdapter.getCount(),(View) object);
+            Log.e("tag","mConvertViews" + mConvertViews.size());
         }
     }
 
@@ -191,6 +193,8 @@ public class BannerViewPager extends ViewPager {
     public View getConvertView() {
         for (int i = 0; i < mConvertViews.size(); i++) {
             if (mConvertViews.get(i).getParent() == null) {
+                Log.e("tag","mConvertViews get(i) " + i);
+
                 return mConvertViews.get(i);
             }
         }
