@@ -2,4 +2,12 @@
 <resources>
 
     <item name="parallax_tag" type="id"/>
+
+
+    <item name="gridview" type="id"/>
+    <item name="webview" type="id"/>
+    <item name="scrollview" type="id"/>
+    <item name="parallax_view_tag" type="id"/>
+    <item name="parallax_pager" type="id"/>
+    <item name="brand_add_id" type="id" />
 </resources>

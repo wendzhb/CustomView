@@ -109,4 +109,13 @@
     <!-- Y方向上的位移 -->
     <attr name="translationYIn" format="float"/>
     <attr name="translationYOut" format="float"/>
+
+    <declare-styleable name="ParallaxTag">
+        <attr name="a_in" format="float" />
+        <attr name="a_out" format="float" />
+        <attr name="x_in" format="float" />
+        <attr name="x_out" format="float" />
+        <attr name="y_in" format="float" />
+        <attr name="y_out" format="float" />
+    </declare-styleable>
 </resources>

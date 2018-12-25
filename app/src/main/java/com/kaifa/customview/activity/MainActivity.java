@@ -67,7 +67,7 @@ public class MainActivity extends BaseActivity {
         mStarView.setSmallIcon(R.drawable.pre_star_small);
     }
 
-    @OnClick({R.id.point, R.id.search, R.id.qq_view_bubble, R.id.qq_view_person, R.id.md, R.id.qq_view_star, R.id.bt_01,R.id.bt_15,R.id.bt_16,R.id.bt_17,
+    @OnClick({R.id.point, R.id.search, R.id.qq_view_bubble, R.id.qq_view_person, R.id.md, R.id.qq_view_star, R.id.bt_01, R.id.bt_15, R.id.bt_16, R.id.bt_17, R.id.bt_18,
             R.id.bt_02, R.id.bt_03, R.id.bt_04, R.id.bt_05, R.id.bt_06, R.id.bt_07, R.id.vp, R.id.loading, R.id.qqtoolbar,
             R.id.bt_09, R.id.bt_10, R.id.bt_11, R.id.bt_12, R.id.bt_13, R.id.bt_14, R.id.behavior_main, R.id.recycler_main, R.id.recycler_drag_main})
     public void onViewClicked(View view) {
@@ -181,8 +181,13 @@ public class MainActivity extends BaseActivity {
             case R.id.bt_16:
                 startActivity(new Intent(this, ViewDay16Activity.class));
 
-                break; case R.id.bt_17:
+                break;
+            case R.id.bt_17:
                 startActivity(new Intent(this, ViewDay17Activity.class));
+
+                break;
+            case R.id.bt_18:
+                startActivity(new Intent(this, ViewDay18Activity.class));
 
                 break;
 

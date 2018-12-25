@@ -11,4 +11,7 @@
     <string name="text_web_ceo">WEB ANALYTICS</string>
     <string name="text_web_dev">WEB DEVELOPER</string>
     <string name="text_e_commerce">e-Commerce</string>
+
+    <string name="phone_login">手机登录</string>
+    <string name="phone_reg">注册帐号</string>
 </resources>

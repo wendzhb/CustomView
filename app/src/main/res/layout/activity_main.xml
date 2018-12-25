@@ -151,6 +151,12 @@
                     android:text="view_day_17" />
 
                 <Button
+                    android:id="@+id/bt_18"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="view_day_18" />
+
+                <Button
                     android:id="@+id/point"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
