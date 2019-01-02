@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".activity.ViewDay13Activity">
 
-    <com.kaifa.customview.widget.ListDataScreenView
+    <com.kaifa.customview.widget.listscreenmenu.ListDataScreenView
         android:id="@+id/list_data_screen_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.kaifa.customview.widget.ListDataScreenView>
+        android:layout_height="match_parent"></com.kaifa.customview.widget.listscreenmenu.ListDataScreenView>
 </android.support.constraint.ConstraintLayout>

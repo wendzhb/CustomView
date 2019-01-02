@@ -9,4 +9,26 @@
     <color name="transparent">#0000</color>
     <color name="white">#FFFFFF</color>
 
+    <color name="orange">#FF9600</color>
+    <color name="aqua">#02D1AC</color>
+    <color name="yellow">#FFD200</color>
+    <color name="blue">#00C6FF</color>
+    <color name="green">#00E099</color>
+    <color name="pink">#FF3891</color>
+
+    <color name="line_color_blue">#3C8EAE</color>
+    <color name="bg_color_pink">#FF90A2</color>
+    <color name="bg_color_blue">#43D5FF</color>
+    <color name="bg_color_blue_light">#84B5CA</color>
+
+
+    <array name="splash_circle_colors">
+        <item>@color/orange</item>
+        <item>@color/aqua</item>
+        <item>@color/yellow</item>
+        <item>@color/blue</item>
+        <item>@color/green</item>
+        <item>@color/pink</item>
+    </array>
+
 </resources>

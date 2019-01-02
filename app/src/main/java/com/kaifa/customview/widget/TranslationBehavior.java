@@ -10,6 +10,7 @@ import android.view.View;
 
 /**
  * Created by zhb on 2018/7/24.
+ * 自定义Behavior
  */
 public class TranslationBehavior extends FloatingActionButton.Behavior {
 

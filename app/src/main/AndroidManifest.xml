@@ -39,9 +39,11 @@
         <activity android:name=".activity.ViewDay13Activity" />
         <activity android:name=".activity.ViewDay14Activity" />
         <activity android:name=".activity.ViewDay15Activity" />
-        <activity android:name=".activity.ViewDay16Activity"></activity>
-        <activity android:name=".activity.ViewDay17Activity"></activity>
-        <activity android:name=".activity.ViewDay18Activity"></activity>
+        <activity android:name=".activity.ViewDay16Activity" />
+        <activity android:name=".activity.ViewDay17Activity" />
+        <activity android:name=".activity.ViewDay18Activity" />
+        <activity android:name=".activity.ViewDay19Activity" />
+        <activity android:name=".activity.ViewDay20Activity"></activity>
     </application>
 
 </manifest>

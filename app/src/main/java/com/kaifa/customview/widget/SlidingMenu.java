@@ -20,6 +20,7 @@ import com.nineoldandroids.view.ViewHelper;
 
 /**
  * Created by zhb on 2017/12/21.
+ * 酷狗侧滑
  */
 
 public class SlidingMenu extends HorizontalScrollView {

@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Created by zhb on 2017/10/23.
+ * 流式布局
  */
 
 public class TagLayout extends ViewGroup {

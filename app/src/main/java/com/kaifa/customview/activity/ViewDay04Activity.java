@@ -2,14 +2,12 @@ package com.kaifa.customview.activity;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 
 import com.kaifa.customview.R;
 import com.kaifa.customview.base.BaseActivity;
 import com.kaifa.customview.widget.ProgressBarView;
-import com.kaifa.customview.widget.ShapeView;
+import com.kaifa.customview.widget.Loading58.ShapeView;
 
 public class ViewDay04Activity extends BaseActivity {
 

@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,16 +17,13 @@ import android.widget.ImageView;
 
 import com.kaifa.customview.R;
 import com.kaifa.customview.ViewHolder;
-import com.kaifa.customview.banner.BannerAdapter;
-import com.kaifa.customview.banner.BannerView;
+import com.kaifa.customview.widget.banner.BannerAdapter;
+import com.kaifa.customview.widget.banner.BannerView;
 import com.kaifa.customview.base.BaseActivity;
-import com.kaifa.customview.recycleview.WrapRecyclerAdapter;
-import com.kaifa.customview.recycleview.WrapRecyclerView;
-import com.kaifa.customview.recycleview.decoration.GridLayoutItemDecoration;
-import com.kaifa.customview.recycleview.refresh.DefaultLoadCreator;
-import com.kaifa.customview.recycleview.refresh.DefaultRefreshCreator;
-import com.kaifa.customview.recycleview.refresh.LoadRefreshRecyclerView;
-import com.kaifa.customview.recycleview.refresh.RefreshRecyclerView;
+import com.kaifa.customview.widget.recycleview.refresh.DefaultLoadCreator;
+import com.kaifa.customview.widget.recycleview.refresh.DefaultRefreshCreator;
+import com.kaifa.customview.widget.recycleview.refresh.LoadRefreshRecyclerView;
+import com.kaifa.customview.widget.recycleview.refresh.RefreshRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,13 +109,13 @@ public class RecycleViewActivity extends BaseActivity implements RefreshRecycler
             }
         });
 
-        recyclerView.addHeaderView(bannerView);
+//        recyclerView.addHeaderView(bannerView);
 
         // 添加头部和底部刷新效果
-//        recyclerView.addRefreshViewCreator(new DefaultRefreshCreator());
-//        recyclerView.addLoadViewCreator(new DefaultLoadCreator());
-//        recyclerView.setOnRefreshListener(this);
-//        recyclerView.setOnLoadMoreListener(this);
+        recyclerView.addRefreshViewCreator(new DefaultRefreshCreator());
+        recyclerView.addLoadViewCreator(new DefaultLoadCreator());
+        recyclerView.setOnRefreshListener(this);
+        recyclerView.setOnLoadMoreListener(this);
 
     }
 
@@ -147,7 +143,7 @@ public class RecycleViewActivity extends BaseActivity implements RefreshRecycler
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.line:
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
                 break;
             case R.id.grid:
                 recyclerView.setLayoutManager(new GridLayoutManager(this, 3));

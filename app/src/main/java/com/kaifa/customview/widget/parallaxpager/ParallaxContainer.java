@@ -19,6 +19,7 @@ import java.util.List;
 
 /**
  * 感谢https://github.com/prolificinteractive/ParallaxPager
+ * 小红书欢迎页
  */
 public class ParallaxContainer extends FrameLayout {
 

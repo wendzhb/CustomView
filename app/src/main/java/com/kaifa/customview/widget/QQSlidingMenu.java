@@ -18,6 +18,7 @@ import com.kaifa.customview.R;
 
 /**
  * Created by zhb on 2017/12/21.
+ * qq侧滑菜单
  */
 
 public class QQSlidingMenu extends HorizontalScrollView {

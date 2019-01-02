@@ -17,8 +17,7 @@ import android.view.MenuItem;
 import com.kaifa.customview.R;
 import com.kaifa.customview.adapter.CommonRecyclerAdapter;
 import com.kaifa.customview.adapter.ViewHolder;
-import com.kaifa.customview.recycleview.WrapRecyclerView;
-import com.kaifa.customview.recycleview.decoration.GridLayoutItemDecoration;
+import com.kaifa.customview.widget.recycleview.WrapRecyclerView;
 
 import java.util.ArrayList;
 import java.util.Collections;

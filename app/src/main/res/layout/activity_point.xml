@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.kaifa.customview.activity.PointActivity">
 
-    <com.kaifa.customview.widget.PointAnimView
+    <com.kaifa.customview.widget.point.PointAnimView
         android:id="@+id/point"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

@@ -24,7 +24,7 @@
         android:onClick="exchanger"/>
 
 
-    <com.kaifa.customview.widget.ShapeView
+    <com.kaifa.customview.widget.Loading58.ShapeView
         android:id="@+id/shapeview"
         android:layout_width="30dp"
         android:layout_height="30dp" />

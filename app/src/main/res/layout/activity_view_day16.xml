@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:text="add" />
 
-    <com.kaifa.customview.widget.LoveLayout
+    <com.kaifa.customview.widget.love.LoveLayout
         android:id="@+id/love_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.kaifa.customview.widget.LoveLayout>
+        android:layout_height="match_parent"></com.kaifa.customview.widget.love.LoveLayout>
 </LinearLayout>

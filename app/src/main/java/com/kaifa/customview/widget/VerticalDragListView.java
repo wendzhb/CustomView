@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 
 /**
  * Created by zhb on 2018/2/28.
+ * 汽车之家折叠列表
  */
 
 public class VerticalDragListView extends FrameLayout {
@@ -161,7 +162,7 @@ public class VerticalDragListView extends FrameLayout {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         //菜单打开要全部拦截
-        if (mMenuIsOpen){
+        if (mMenuIsOpen) {
             return true;
         }
         //向下滑动拦截，不要给listview做处理
@@ -175,7 +176,7 @@ public class VerticalDragListView extends FrameLayout {
                 break;
             case MotionEvent.ACTION_MOVE:
                 float moveY = ev.getY();
-                if ((moveY - mDownY)>0 && !canChildScrollUp()) {
+                if ((moveY - mDownY) > 0 && !canChildScrollUp()) {
                     //向下滑动,并且滚动到了顶部的时候拦截，不让listview滑动
                     return true;
                 }
@@ -187,9 +188,9 @@ public class VerticalDragListView extends FrameLayout {
 
     /**
      * @return Whether it is possible for the child view of this layout to
-     *         scroll up. Override this if the child view is a custom view.
-     *
-     *         判断View是否滚动到了最顶部
+     * scroll up. Override this if the child view is a custom view.
+     * <p>
+     * 判断View是否滚动到了最顶部
      */
     public boolean canChildScrollUp() {
 

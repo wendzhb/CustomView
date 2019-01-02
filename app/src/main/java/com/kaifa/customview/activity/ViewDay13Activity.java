@@ -1,12 +1,9 @@
 package com.kaifa.customview.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import com.kaifa.customview.R;
-import com.kaifa.customview.adapter.ListScreenMenuAdapter;
+import com.kaifa.customview.widget.listscreenmenu.ListScreenMenuAdapter;
 import com.kaifa.customview.base.BaseActivity;
-import com.kaifa.customview.widget.ListDataScreenView;
+import com.kaifa.customview.widget.listscreenmenu.ListDataScreenView;
 
 public class ViewDay13Activity extends BaseActivity {
 

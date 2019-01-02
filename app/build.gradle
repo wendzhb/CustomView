@@ -38,7 +38,6 @@ dependencies {
     compile 'com.android.support:percent:25.3.1'
 
 
-
 }
 repositories {
     mavenCentral()

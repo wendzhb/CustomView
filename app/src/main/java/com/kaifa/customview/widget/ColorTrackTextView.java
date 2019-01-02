@@ -14,6 +14,7 @@ import com.kaifa.customview.R;
 
 /**
  * Created by zhb on 2017/9/19.
+ * 字体变色
  */
 
 public class ColorTrackTextView extends android.widget.TextView {
@@ -91,9 +92,9 @@ public class ColorTrackTextView extends android.widget.TextView {
             //绘制变色
             drawText(canvas, mChangePaint, 0, middle);
         } else {
-            drawText(canvas, mOriginPaint, 0, getWidth()-middle);
+            drawText(canvas, mOriginPaint, 0, getWidth() - middle);
             //绘制变色
-            drawText(canvas, mChangePaint, getWidth()-middle, getWidth());
+            drawText(canvas, mChangePaint, getWidth() - middle, getWidth());
         }
     }
 

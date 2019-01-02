@@ -5,7 +5,7 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <com.kaifa.customview.widget.ShapeView
+    <com.kaifa.customview.widget.Loading58.ShapeView
         android:id="@+id/shape_view"
         android:layout_width="25dp"
         android:layout_height="25dp" />

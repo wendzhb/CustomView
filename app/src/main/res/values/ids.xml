@@ -10,4 +10,7 @@
     <item name="parallax_view_tag" type="id"/>
     <item name="parallax_pager" type="id"/>
     <item name="brand_add_id" type="id" />
+
+    <item name="id_scan_circle" type="id"/>
+
 </resources>

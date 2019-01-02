@@ -20,6 +20,7 @@ import com.kaifa.customview.R;
 
 /**
  * Created by zhb on 2017/9/18.
+ * qq步数
  */
 
 public class QQStepView extends View {

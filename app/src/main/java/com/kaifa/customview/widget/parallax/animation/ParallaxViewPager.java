@@ -19,31 +19,31 @@ import java.util.List;
  * Created by JackChen 2018/3/9 8:28
  * Version 1.0
  * Params:
- * Description:  视差动画的ViewPager
-*/
+ * Description:  视差动画的ViewPager 酷狗视差动画
+ */
 public class ParallaxViewPager extends ViewPager {
 
 
-    private List<ParallaxFragment> mFragments ;
+    private List<ParallaxFragment> mFragments;
 
     public ParallaxViewPager(Context context) {
-        this(context , null);
+        this(context, null);
     }
 
     public ParallaxViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mFragments = new ArrayList<>() ;
+        mFragments = new ArrayList<>();
     }
 
 
-    public void setLayoutId(FragmentManager fm  ,int[] layoutIds){
+    public void setLayoutId(FragmentManager fm, int[] layoutIds) {
         mFragments.clear();
         for (int layoutId : layoutIds) {
-            ParallaxFragment fragment = new ParallaxFragment() ;
-            Bundle bundle = new Bundle() ;
-            bundle.putInt(ParallaxFragment.LAYOUT_ID_KEY , layoutId);
+            ParallaxFragment fragment = new ParallaxFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(ParallaxFragment.LAYOUT_ID_KEY, layoutId);
             fragment.setArguments(bundle);
-            mFragments.add(fragment) ;
+            mFragments.add(fragment);
         }
 
         // 给我们的ViewPager  设置Adapter
@@ -59,26 +59,26 @@ public class ParallaxViewPager extends ViewPager {
                 // positionOffset值是 0-1  positionOffsetPixels值是 0-屏幕的宽度px
 
                 // 获取左边出去的fragment右边进来的fragment
-                ParallaxFragment outFragment = mFragments.get(position) ;
+                ParallaxFragment outFragment = mFragments.get(position);
                 List<View> parallaxViews = outFragment.getParallaxViews();
                 for (View parallaxView : parallaxViews) {
                     ParallaxTag tag = (ParallaxTag) parallaxView.getTag(R.id.parallax_tag);
 
                     // 为什么这样写 ?
-                    parallaxView.setTranslationX((-positionOffsetPixels)*tag.translationXOut);
-                    parallaxView.setTranslationY((-positionOffsetPixels)*tag.translationYOut);
+                    parallaxView.setTranslationX((-positionOffsetPixels) * tag.translationXOut);
+                    parallaxView.setTranslationY((-positionOffsetPixels) * tag.translationYOut);
 
                 }
 
 
                 try {
-                    ParallaxFragment inFragment = mFragments.get(position+1) ;
-                    parallaxViews = inFragment.getParallaxViews() ;
+                    ParallaxFragment inFragment = mFragments.get(position + 1);
+                    parallaxViews = inFragment.getParallaxViews();
                     for (View parallaxView : parallaxViews) {
                         ParallaxTag tag = (ParallaxTag) parallaxView.getTag(R.id.parallax_tag);
 
-                        parallaxView.setTranslationX((getMeasuredWidth()-positionOffsetPixels)*tag.translationXIn);
-                        parallaxView.setTranslationY((getMeasuredWidth()-positionOffsetPixels)*tag.translationYIn);
+                        parallaxView.setTranslationX((getMeasuredWidth() - positionOffsetPixels) * tag.translationXIn);
+                        parallaxView.setTranslationY((getMeasuredWidth() - positionOffsetPixels) * tag.translationYIn);
 
                     }
                 } catch (Exception e) {

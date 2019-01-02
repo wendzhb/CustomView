@@ -1,12 +1,10 @@
 package com.kaifa.customview.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 
 import com.kaifa.customview.R;
 import com.kaifa.customview.base.BaseActivity;
-import com.kaifa.customview.widget.LoveLayout;
+import com.kaifa.customview.widget.love.LoveLayout;
 
 public class ViewDay16Activity extends BaseActivity {
 
