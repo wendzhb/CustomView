@@ -26,7 +26,7 @@ public class MainActivity extends BaseActivity {
 
     private SearchFragment searchFragment;
 
-
+    //测试git
     @Override
     protected void setContentView() {
         setContentView(R.layout.activity_main);
